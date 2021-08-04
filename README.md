@@ -6,4 +6,4 @@
 
 ## 方案架构以及流程 
 
-![alt text](https://github.com/zhixueli/awssso-gsuite/blob/master/images/G-Suite-AWS-SSO-Figure-1.png?raw=true)
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-1.png?raw=true)
