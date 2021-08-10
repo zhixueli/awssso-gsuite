@@ -37,3 +37,51 @@ AWS SSO 基于 SAML 2.0 协议对 G-Suite 用户进行身份验证，方案登�
 #### 1.2. AWS SSO 启用之后，在 AWS SSO Dashboard 页面，选择 Choose your identity source
 
 ![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-3.png?raw=true)
+
+#### 1.3. 在 Settings 页面，选择 identity source 旁边的 Change
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-4.png?raw=true)
+
+#### 1.4. 默认情况下，AWS SSO 使用自己的目录作为Idp。 要将 G-Suite 作为Idp，需要切换到外部Idp
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-5.png?raw=true)
+
+#### 1.5. 选择外部Idp会显示一些额外的信息，选择 Show individual metadata values，所显示的信息会在接下来的步骤中使用到
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-6.png?raw=true)
+
+### 2. 在 Google WorkSpaces 上配置 SAML 应用
+
+#### 2.1. 访问 https://admin.google.com/，进入 Google Admin Console，左侧菜单栏进入 Apps -> Web and mobile apps，选择 Add app -> Add custom SAML app
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-7.png?raw=true)
+
+#### 2.2. 在 App details 页面，填入一个合适的 App 的名字，选择 Continue
+
+#### 2.3. 在 Google identity provider details 页面，选择 Option 1：Download Metadata，将会下载文件名为 GoogleIDPMetadata.xml 的文件到本地，这个文件会在后续步骤配置 AWS SSO 时用到
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-8.png?raw=true)
+
+#### 2.4. 在 Service provider details 页面，使用在步骤 1.5 中 AWS SSO 界面上的 individual metadata values，填入如下对应的信息：
+
+* ACS URL：填入 AWS SSO ACS URL
+* Entity ID：填入 AWS SSO Issue URL
+* Start URL：留空
+* Name ID format：选择 EMAIL
+* Name ID： 选择 Basic Information > Primary email
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-9.png?raw=true)
+
+#### 2.5. 在 Attribute Mapping 页面，默认配置即可，直接选择 Finish
+
+#### 2.6. 在新建的 App 页面，User Access 部分，点击右侧的扩展按钮：
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-10.png?raw=true)
+
+#### 2.7. 在 Service Status 部分，选择 On for everyone 并选择 Save。至此，已经完成了在 Google WorkSpaces 上的初步配置
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-11.png?raw=true)
+
+### 3. AWS SSO 后续配置
+
+#### 3.1. 在新建的 AWS SSO 中，User Access 部分，点击右侧的扩展按钮：
