@@ -117,3 +117,25 @@ AWS SSO 基于 SAML 2.0 协议对 G-Suite 用户进行身份验证，方案登�
 #### 4.5. 在 Select users or groups 页面，选择需要访问在步骤 4.4 中指定的 AWS 账号的用户或组，然后选择 Next: Permission sets 来分配权限
 
 ![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-19.png?raw=true)
+
+#### 4.6. 在 Select permission sets 页面，选择已有或者通过 Create new permission set 创建一个新的权限集。Permission set 是一组管理员定义的策略，AWS SSO 使用这些策略来确定用户访问给定 AWS 账户的有效权限。 Permission set 可以包含 AWS 托管策略或存储在 AWS SSO 中的自定义策略，与 AWS IAM Policy 一致。Permission set 存储在 AWS SSO 中，仅用于 AWS 账户。 Permission set 最终在给定的 AWS 账户中创建 IAM 角色并赋予角色给定权限，通过信任关系策略允许用户通过 AWS SSO 承担这个角色。
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-20.png?raw=true)
+
+#### 4.7. 在 Create new permission set 页面，可以选择已有策略，或者新建一个自定义策略，与创建 IAM Policy类似。选择创建自定义策略过程中，可以选择用户 SSO 用户登录 AWS Console 有效时间，默认为一小时。本例中选择 Use an existing job function policy 来选择已有策略 PowerUserAccess
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-21.png?raw=true)
+
+#### 4.8. 最后选择 Finish 完成配置，如果添加新用户，请重复步骤 4.1-4.7，添加之前需要确认添加用户的 Email 在 Google Workspaces 已存在相应账号
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-22.png?raw=true)
+
+### 5. 测试 AWS SSO 用户登录
+
+#### 5.1. 在 AWS SSO 页面，左侧菜单栏选择 Settings，点击 User portal URL 访问登录地址
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-23.png?raw=true)
+
+#### 5.2. 浏览器将跳转至 Google 账号登录页面进行认证，输入在 AWS SSO 中已配置的 Google Workspaces 账号信息认证通过后，将会跳转回 AWS SSO 页面，本页面将会列出前序步骤中已配置授权的 AWS 账号以及用户信息和访问 AWS Console 的链接地址，点击即可跳转至相应账号的 AWS Console
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-24.png?raw=true)
