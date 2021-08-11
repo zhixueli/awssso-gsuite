@@ -84,4 +84,36 @@ AWS SSO 基于 SAML 2.0 协议对 G-Suite 用户进行身份验证，方案登�
 
 ### 3. AWS SSO 后续配置
 
-#### 3.1. 在新建的 AWS SSO 中，User Access 部分，点击右侧的扩展按钮：
+#### 3.1. 在步骤 1.5 中配置 AWS SSO 外部 Idp 的页面，选择 Browse，上传在步骤 2.3 中下载的 Metadata 文件，然后选择 Next：Review
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-12.png?raw=true)
+
+#### 3.2. 在 Review and Confirm 页面，在最下方文本框中，填入 Confirm，然后选择 Change identity source 完成配置
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-13.png?raw=true)
+
+#### 3.3. 接下来页面中会提示 AWS SSO 配置已完成，选择 Return to settings 进行用户和权限相关配置
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-14.png?raw=true)
+
+### 4. AWS SSO 用户和权限配置
+
+#### 4.1. 在 AWS SSO 页面，左侧菜单栏选择 Users，然后选择 Add user 来添加 SSO 用户
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-15.png?raw=true)
+
+#### 4.2. 在 User details 页面，Username 和 Email address 请填入相应的 Google Workspaces 用户 Email，然后选择Next：Groups
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-16.png?raw=true)
+
+#### 4.3. 在接下来的步骤中，可以把 user 加入到某一个已有的 user groups 或者新建一个 user groups 并加入其中。User groups 是具有相同 AWS 资源访问权限（Permission Sets）的一组用户集合，比如数据库管理员，超级管理员等等，可以为需要相同权限的用户建立 User groups，之后新增的需要相同权限的用户可直接加入 User groups，无需单独为用户分配权限。如果需要单独分配权限，请略过 Add user to groups 这一步，直接选择 Add user
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-17.png?raw=true)
+
+#### 4.4. 在 AWS Accounts 页面，会列出 AWS Organization 下的所有 AWS 账户，需要为新加的用户选择可以访问哪些 AWS 账户，选择完成后，点击 Assign users
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-18.png?raw=true)
+
+#### 4.5. 在 Select users or groups 页面，选择需要访问在步骤 4.4 中指定的 AWS 账号的用户或组，然后选择 Next: Permission sets 来分配权限
+
+![alt text](https://github.com/zhixueli/awssso-gsuite/blob/main/images/G-Suite-AWS-SSO-Figure-19.png?raw=true)
